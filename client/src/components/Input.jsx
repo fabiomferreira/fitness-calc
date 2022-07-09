@@ -14,9 +14,9 @@ function Input({
         id={id}
         type={type}
         name={name}
-        className="block w-full h-10 rounded border border-slate-900 focus:outline-amber-400 invalid:border-red-800"
+        className="block w-full px-2 h-10 rounded border border-slate-900 focus:outline-amber-400 invalid:border-red-800"
       />
-      <ErrorMessage name={name} component="span" className="block text-red-700">
+      <ErrorMessage name={name} component="span" className="block text-red-700 text-xs">
         {error}
       </ErrorMessage>
     </div>
