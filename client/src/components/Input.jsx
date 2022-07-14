@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ErrorMessage, Field } from 'formik';
 
 function Input({
-  type, name, label, id, error,
+  type, name, label, id, error, placeholder,
 }) {
   return (
     <div className="block mb-2">
@@ -14,6 +14,7 @@ function Input({
         id={id}
         type={type}
         name={name}
+        placeholder={placeholder}
         className="block w-full px-2 h-10 rounded border border-slate-900 focus:outline-amber-400 invalid:border-red-800"
       />
       <ErrorMessage name={name} component="span" className="block text-red-700 text-xs">
@@ -28,6 +29,7 @@ Input.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   name: PropTypes.string,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf(['number', 'text']).isRequired,
 };
 
@@ -35,6 +37,7 @@ Input.defaultProps = {
   label: '',
   error: '',
   name: '',
+  placeholder: '',
 };
 
 export default Input;
