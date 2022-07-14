@@ -1,13 +1,18 @@
-import { Form, Formik } from 'formik';
+import {
+  ErrorMessage, Form, Formik,
+} from 'formik';
 import React from 'react';
 import Button from './Button';
 import Input from './Input';
+import RadioButton from './RadioButton';
 
 function FormCalculator() {
   return (
     <div>
       <Formik
-        initialValues={{ height: '', weight: '', age: '' }}
+        initialValues={{
+          height: '', weight: '', age: '', gender: '',
+        }}
         validate={(values) => {
           const errors = {};
           if (!values.height) {
@@ -20,6 +25,10 @@ function FormCalculator() {
 
           if (!values.age) {
             errors.age = 'Obrigatório';
+          }
+
+          if (!values.gender) {
+            errors.gender = 'Obrigatório';
           }
           return errors;
         }}
@@ -52,6 +61,19 @@ function FormCalculator() {
               type="number"
               name="age"
             />
+            <RadioButton
+              id="Form_GeneroMasculino"
+              name="gender"
+              value="masculino"
+              label="Masculino"
+            />
+            <RadioButton
+              id="Form_GeneroFeminino"
+              name="gender"
+              value="feminino"
+              label="Feminino"
+            />
+            <ErrorMessage name="gender" component="span" />
             <Button submit disabled={!!Object.keys(errors).length}>
               Enviar
             </Button>
