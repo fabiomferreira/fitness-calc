@@ -33,8 +33,18 @@ function FormCalculator() {
     return errors;
   };
 
+  const harrisBenedictCalc = (weight, height, age, gender) => {
+    if (gender === 'masculino') {
+      return 66.5 + 13.75 * weight + 5.003 * height - 6.755 * age;
+    }
+
+    return 655.1 + 9.563 * weight + 1.850 * height - 4.676 * age;
+  };
+
   const calculateValues = (values) => {
     const weightValue = parseFloat(values.weight);
+    const heightValue = parseFloat(values.height) * 100;
+    const { gender, age } = values;
     const carbsGramsPerKilo = 3;
     const minProteinGramsPerKilo = 1.6;
     const maxProteinGramsPerKilo = 2.2;
@@ -46,12 +56,14 @@ function FormCalculator() {
     const maxProtein = weightValue * maxProteinGramsPerKilo;
     const minFat = weightValue * minFatGramsPerKilo;
     const maxFat = weightValue * maxFatGramsPerKilo;
+    const tmb = harrisBenedictCalc(weightValue, heightValue, age, gender);
     setResults({
       carbs,
       minProtein,
       maxProtein,
       minFat,
       maxFat,
+      tmb,
     });
     // console.log(values);
   };

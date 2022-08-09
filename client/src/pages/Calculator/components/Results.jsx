@@ -4,16 +4,28 @@ import ResultItem from './ResultItem';
 
 function Results() {
   const { CalculatorContext } = store;
-  const { results } = useContext(CalculatorContext);
+  const {
+    results, results: {
+      carbs, minProtein, maxProtein, minFat, maxFat, tmb,
+    },
+  } = useContext(CalculatorContext);
   return (
     <div>
       {
         !Object.keys(results).length || (
           <>
-            <ResultItem label="Carboidratos" value={`${results.carbs?.toFixed(2)}g`} />
+            <ResultItem label="Carboidratos" value={`${carbs?.toFixed(2)}g`} />
             <ResultItem
               label="Proteína"
-              value={`${results.minProtein?.toFixed(2)} - ${results.maxProtein?.toFixed(2)}g`}
+              value={`${minProtein?.toFixed(2)} - ${maxProtein?.toFixed(2)}g`}
+            />
+            <ResultItem
+              label="Gordura"
+              value={`${minFat?.toFixed(2)} - ${maxFat?.toFixed(2)}g`}
+            />
+            <ResultItem
+              label="Metabolismo basal"
+              value={`${tmb?.toFixed(2)}kcal`}
             />
           </>
         )
